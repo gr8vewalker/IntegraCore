@@ -1,0 +1,6 @@
+name: TestPlugin
+main: dev.integra.TestPlugin
+version: 1.0
+description: A test plugin for integra api
+authors: [Integra, Ahmetflix]
+api-version: 1.13

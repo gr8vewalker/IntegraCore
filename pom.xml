@@ -9,7 +9,8 @@
     <version>dev-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>plugin</module>
+        <module>api</module>
+        <module>test</module>
     </modules>
 
     <properties>

@@ -10,7 +10,7 @@
     </parent>
 
     <version>1.0.0</version>
-    <artifactId>plugin</artifactId>
+    <artifactId>api</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -30,6 +30,12 @@
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
             <version>1.13.2-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>RELEASE</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
