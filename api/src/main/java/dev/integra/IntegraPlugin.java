@@ -2,6 +2,7 @@ package dev.integra;
 
 import dev.integra.api.IntegraAPI;
 import dev.integra.api.data.IDataSource;
+import dev.integra.command.IntegraCommand;
 import dev.integra.data.serialization.DataRegistration;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -15,6 +16,7 @@ public abstract class IntegraPlugin extends JavaPlugin {
     protected final Logger LOGGER = getLogger();
     protected List<IDataSource> dataSources;
     protected List<Listener> eventListeners;
+    protected List<IntegraCommand> commands;
 
     @Override
     public void onEnable() {
@@ -38,6 +40,8 @@ public abstract class IntegraPlugin extends JavaPlugin {
         eventListeners = registerEventListeners();
         eventListeners.forEach(listener -> getServer().getPluginManager().registerEvents(listener, this));
 
+        commands = registerCommands();
+        commands.forEach(IntegraCommand::load);
 
         enable();
     }
@@ -61,6 +65,9 @@ public abstract class IntegraPlugin extends JavaPlugin {
 
     @NotNull
     protected abstract List<Listener> registerEventListeners();
+
+    @NotNull
+    protected abstract List<IntegraCommand> registerCommands();
 
     protected abstract void enable();
 

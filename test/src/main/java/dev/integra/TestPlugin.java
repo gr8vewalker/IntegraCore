@@ -3,6 +3,8 @@ package dev.integra;
 import dev.integra.api.data.IData;
 import dev.integra.api.data.IDataSource;
 import dev.integra.api.data.IQuery;
+import dev.integra.command.IntegraCommand;
+import dev.integra.command.TestCommand;
 import dev.integra.data.file.FileDataSource;
 import dev.integra.data.impl.IntData;
 import dev.integra.data.impl.StringQuery;
@@ -35,6 +37,11 @@ public class TestPlugin extends IntegraPlugin {
     @Override
     protected @NotNull List<Listener> registerEventListeners() {
         return Collections.singletonList(new TestListener());
+    }
+
+    @Override
+    protected @NotNull List<IntegraCommand> registerCommands() {
+        return Collections.singletonList(new TestCommand());
     }
 
     @Override
