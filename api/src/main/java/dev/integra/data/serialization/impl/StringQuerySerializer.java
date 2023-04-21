@@ -1,16 +1,18 @@
 package dev.integra.data.serialization.impl;
 
+import dev.integra.api.data.IQuery;
 import dev.integra.api.data.serialization.IQuerySerializer;
+import dev.integra.data.impl.StringQuery;
 
 public class StringQuerySerializer implements IQuerySerializer {
     @Override
-    public <K> String serialize(K object) {
-        return object.toString();
+    public String serialize(IQuery object) {
+        return (String) object.getQuery();
     }
 
     @Override
-    public <K> K deserialize(String serialized) {
-        return (K) serialized;
+    public IQuery deserialize(String serialized) {
+        return new StringQuery(serialized);
     }
 
     @Override

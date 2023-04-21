@@ -18,12 +18,12 @@ public class QueryRegistration {
     }
 
     public static IQuerySerializer getSerializer(IQuery query) {
-        return getSerializer(query.getClass());
+        return getSerializer(query.getType());
     }
 
     public static IQuerySerializer getSerializer(Class<?> type) {
         for (IQuerySerializer serializer : serializers) {
-            if (serializer.getType().getName().equals(type.getName())) {
+            if (serializer.getType().isAssignableFrom(type)) {
                 return serializer;
             }
         }

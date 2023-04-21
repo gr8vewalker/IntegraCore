@@ -1,18 +1,20 @@
 package dev.integra.data.serialization.impl;
 
+import dev.integra.api.data.IQuery;
 import dev.integra.api.data.serialization.IQuerySerializer;
+import dev.integra.data.impl.UUIDQuery;
 
 import java.util.UUID;
 
 public class UUIDQuerySerializer implements IQuerySerializer {
     @Override
-    public <K> String serialize(K object) {
-        return object.toString();
+    public String serialize(IQuery object) {
+        return object.getQuery().toString();
     }
 
     @Override
-    public <K> K deserialize(String serialized) {
-        return (K) UUID.fromString(serialized);
+    public IQuery deserialize(String serialized) {
+        return new UUIDQuery(UUID.fromString(serialized));
     }
 
     @Override

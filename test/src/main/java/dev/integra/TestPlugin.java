@@ -1,5 +1,6 @@
 package dev.integra;
 
+import com.google.common.collect.Maps;
 import dev.integra.api.data.IData;
 import dev.integra.api.data.IDataSource;
 import dev.integra.api.data.IQuery;
@@ -7,6 +8,7 @@ import dev.integra.command.IntegraCommand;
 import dev.integra.command.TestCommand;
 import dev.integra.data.file.FileDataSource;
 import dev.integra.data.impl.IntData;
+import dev.integra.data.impl.MapData;
 import dev.integra.data.impl.StringQuery;
 import dev.integra.listener.TestListener;
 import org.bukkit.event.Listener;
@@ -20,8 +22,8 @@ public class TestPlugin extends IntegraPlugin {
 
     private static TestPlugin instance;
 
-    private final File testFile = new File(getDataFolder(), "test.json");
-    private final FileDataSource<String> dataSource = new FileDataSource<>(testFile, FileDataSource.FileType.JSON, String.class);
+    private final File testFile = new File(getDataFolder(), "testyml.yml");
+    private final FileDataSource<String> dataSource = new FileDataSource<>(testFile, FileDataSource.FileType.YAML, String.class);
 
     @Override
     @NotNull
@@ -48,12 +50,16 @@ public class TestPlugin extends IntegraPlugin {
     protected void enable() {
         instance = this;
         dataSource.insertOrUpdate(new StringQuery("test"), new IntData(ThreadLocalRandom.current().nextInt()));
+        dataSource.insertOrUpdate(new StringQuery("testMap"), new MapData(Maps.asMap(Collections.singleton("test"), s -> ThreadLocalRandom.current().nextInt())));
     }
 
     @Override
     protected void disable() {
         Optional<IData> queryedData = dataSource.query(new StringQuery("test"));
         queryedData.ifPresent(data -> getLogger().info("Data Retrieved: " + data.getData()));
+
+        Optional<IData> queryedMapData = dataSource.query(new StringQuery("testMap"));
+        queryedMapData.ifPresent(data -> getLogger().info("Map Data Retrieved: " + data.getData()));
     }
 
     public static TestPlugin getInstance() {

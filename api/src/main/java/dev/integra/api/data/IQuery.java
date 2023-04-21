@@ -6,11 +6,11 @@ public interface IQuery {
 
     Object getQuery();
 
-    static IQuery of(Class<?> type, Object query) {
+    static IQuery of(Object query) {
         return new IQuery() {
             @Override
             public Class<?> getType() {
-                return type;
+                return query.getClass();
             }
 
             @Override

@@ -1,10 +1,12 @@
 package dev.integra.api.data.serialization;
 
+import dev.integra.api.data.IQuery;
+
 public interface IQuerySerializer {
 
-    <K> String serialize(K object);
+    String serialize(IQuery object);
 
-    <K> K deserialize(String serialized);
+    IQuery deserialize(String serialized);
 
     Class<?> getType();
 

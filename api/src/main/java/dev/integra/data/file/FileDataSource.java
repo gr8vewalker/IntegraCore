@@ -4,6 +4,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import dev.integra.api.data.IData;
+import dev.integra.api.data.IQuery;
 import dev.integra.data.BasicDataSource;
 import dev.integra.data.serialization.DataRegistration;
 import dev.integra.utils.JsonUtils;
@@ -43,7 +44,7 @@ public class FileDataSource<K> extends BasicDataSource<K> {
             JsonObject object = new JsonParser().parse(Files.newBufferedReader(file.toPath())).getAsJsonObject();
             Map<String, Object> map = JsonUtils.toMap(object.toString());
             for (Map.Entry<String, Object> entry : map.entrySet()) {
-                K key = getQuerySerializer().deserialize(entry.getKey());
+                K key = (K) getQuerySerializer().deserialize(entry.getKey()).getQuery();
                 IData value = DataRegistration.getSerializer(entry.getValue().getClass()).deserialize(entry.getValue());
                 keyValueMap.put(key, value);
             }
@@ -58,7 +59,7 @@ public class FileDataSource<K> extends BasicDataSource<K> {
         try {
             YamlConfiguration configuration = YamlConfiguration.loadConfiguration(file);
             for (String key : configuration.getKeys(false)) {
-                K k = getQuerySerializer().deserialize(key);
+                K k = (K) getQuerySerializer().deserialize(key).getQuery();
                 Object value = configuration.get(key);
                 IData v = DataRegistration.getSerializer(value.getClass()).deserialize(value);
                 keyValueMap.put(k, v);
@@ -90,7 +91,7 @@ public class FileDataSource<K> extends BasicDataSource<K> {
         try {
             JsonObject object = new JsonObject();
             for (Map.Entry<K, IData> entry : keyValueMap.entrySet()) {
-                String key = getQuerySerializer().serialize(entry.getKey());
+                String key = getQuerySerializer().serialize(IQuery.of(entry.getKey()));
                 Object serialized = DataRegistration.getSerializer(entry.getValue()).serialize(entry.getValue());
                 JsonElement element = JsonUtils.toJsonElement(serialized);
                 object.add(key, element);
@@ -107,7 +108,7 @@ public class FileDataSource<K> extends BasicDataSource<K> {
         try {
             YamlConfiguration configuration = new YamlConfiguration();
             for (Map.Entry<K, IData> entry : keyValueMap.entrySet()) {
-                String key = getQuerySerializer().serialize(entry.getKey());
+                String key = getQuerySerializer().serialize(IQuery.of(entry.getKey()));
                 Object serialized = DataRegistration.getSerializer(entry.getValue()).serialize(entry.getValue());
                 configuration.set(key, serialized);
             }

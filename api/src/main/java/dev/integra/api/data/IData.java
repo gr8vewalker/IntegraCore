@@ -6,11 +6,11 @@ public interface IData {
 
     Object getData();
 
-    static IData of(Class<?> type, Object data) {
+    static IData of(Object data) {
         return new IData() {
             @Override
             public Class<?> getType() {
-                return type;
+                return data.getClass();
             }
 
             @Override

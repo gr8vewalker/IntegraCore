@@ -23,7 +23,7 @@ public class DataRegistration {
 
     public static IDataSerializer getSerializer(Class<?> type) {
         for (IDataSerializer serializer : serializers) {
-            if (serializer.getType().getName().equals(type.getName())) {
+            if (serializer.getType().isAssignableFrom(type)) {
                 return serializer;
             }
         }

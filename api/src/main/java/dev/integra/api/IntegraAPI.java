@@ -2,10 +2,7 @@ package dev.integra.api;
 
 import dev.integra.data.serialization.DataRegistration;
 import dev.integra.data.serialization.QueryRegistration;
-import dev.integra.data.serialization.impl.DoubleDataSerializer;
-import dev.integra.data.serialization.impl.IntDataSerializer;
-import dev.integra.data.serialization.impl.StringQuerySerializer;
-import dev.integra.data.serialization.impl.UUIDQuerySerializer;
+import dev.integra.data.serialization.impl.*;
 
 import java.util.logging.Logger;
 
@@ -23,6 +20,8 @@ public class IntegraAPI {
         LOGGER.info("IntegraAPI: Initializing Data & Serializer");
         DataRegistration.register(new IntDataSerializer());
         DataRegistration.register(new DoubleDataSerializer());
+        DataRegistration.register(new MapDataSerializer());
+        DataRegistration.register(new StringDataSerializer());
         QueryRegistration.register(new StringQuerySerializer());
         QueryRegistration.register(new UUIDQuerySerializer());
     }
