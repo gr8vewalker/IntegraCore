@@ -3,7 +3,6 @@ package dev.integra;
 import com.google.common.collect.Maps;
 import dev.integra.api.data.IData;
 import dev.integra.api.data.IDataSource;
-import dev.integra.api.data.IQuery;
 import dev.integra.command.IntegraCommand;
 import dev.integra.command.TestCommand;
 import dev.integra.data.file.FileDataSource;
@@ -15,7 +14,9 @@ import org.bukkit.event.Listener;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class TestPlugin extends IntegraPlugin {

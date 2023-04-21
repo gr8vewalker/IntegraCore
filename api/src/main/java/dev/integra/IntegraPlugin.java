@@ -3,7 +3,6 @@ package dev.integra;
 import dev.integra.api.IntegraAPI;
 import dev.integra.api.data.IDataSource;
 import dev.integra.command.IntegraCommand;
-import dev.integra.data.serialization.DataRegistration;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
