@@ -6,6 +6,12 @@ import dev.integra.data.impl.UUIDQuery;
 
 import java.util.UUID;
 
+/**
+ * Built-in serializer for {@link UUIDQuery}
+ *
+ * @author milizm
+ * @since 1.0.0
+ */
 public class UUIDQuerySerializer implements IQuerySerializer {
     @Override
     public String serialize(IQuery object) {

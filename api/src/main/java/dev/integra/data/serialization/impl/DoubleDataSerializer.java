@@ -4,6 +4,12 @@ import dev.integra.api.data.IData;
 import dev.integra.api.data.serialization.IDataSerializer;
 import dev.integra.data.impl.DoubleData;
 
+/**
+ * Built-in serializer for {@link DoubleData}.
+ *
+ * @author milizm
+ * @since 1.0.0
+ */
 public class DoubleDataSerializer implements IDataSerializer {
     @Override
     public Object serialize(IData object) {

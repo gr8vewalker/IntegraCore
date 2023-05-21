@@ -6,6 +6,22 @@ import dev.integra.data.serialization.impl.*;
 
 import java.util.logging.Logger;
 
+/**
+ * Main class of IntegraAPI
+ *
+ * @author milizm
+ * @see DataRegistration
+ * @see QueryRegistration
+ * @see IntDataSerializer
+ * @see DoubleDataSerializer
+ * @see MapDataSerializer
+ * @see StringDataSerializer
+ * @see StringQuerySerializer
+ * @see UUIDQuerySerializer
+ * @see dev.integra.utils.JsonUtils
+ * @see dev.integra.data.BasicDataSource
+ * @since 1.0.0
+ */
 public class IntegraAPI {
 
     private static final Logger LOGGER = Logger.getLogger("IntegraAPI");
@@ -30,4 +46,7 @@ public class IntegraAPI {
         return "1.0.0";
     }
 
+    public static Logger getLogger() {
+        return LOGGER;
+    }
 }

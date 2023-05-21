@@ -5,6 +5,19 @@ import dev.integra.api.data.serialization.IDataSerializer;
 import dev.integra.data.impl.StringData;
 import dev.integra.data.serialization.DataRegistration;
 
+/**
+ * Built-in serializer for {@link StringData}.<br><br>
+ *
+ * <p>
+ * While deserializing, if the string contains a ^, it's a serialized object with type information.<br>
+ * e.g. java.util.Map^base64data<br><br>
+ * So it splits the string by ^ and gets the deserializer for the type, then deserializes the data.
+ * </p>
+ *
+ * @author milizm
+ * @see MapDataSerializer MapDataSerializer for an example of a serialized object with type information
+ * @since 1.0.0
+ */
 public class StringDataSerializer implements IDataSerializer {
 
     @Override

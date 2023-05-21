@@ -5,6 +5,10 @@ import com.google.gson.JsonElement;
 
 import java.util.Map;
 
+/**
+ * @author milizm
+ * @since 1.0.0
+ */
 public class JsonUtils {
 
     private static final Gson gson = new Gson();

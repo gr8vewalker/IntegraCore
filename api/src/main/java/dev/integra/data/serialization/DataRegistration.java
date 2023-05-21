@@ -5,6 +5,12 @@ import dev.integra.api.data.serialization.IDataSerializer;
 
 import java.util.ArrayList;
 
+/**
+ * This class is used to register serializers for data.
+ *
+ * @author milizm
+ * @since 1.0.0
+ */
 public class DataRegistration {
 
     private static final ArrayList<IDataSerializer> serializers = new ArrayList<>();

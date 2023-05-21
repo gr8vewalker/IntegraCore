@@ -1,11 +1,19 @@
 package dev.integra.api.data;
 
+/**
+ * Data object for storing in data source
+ *
+ * @author milizm
+ * @since 1.0.0
+ */
 public interface IData {
 
-    Class<?> getType();
-
-    Object getData();
-
+    /**
+     * Creates a new {@link IData} instance
+     *
+     * @param data Data object
+     * @return {@link IData} instance with given data object and its class
+     */
     static IData of(Object data) {
         return new IData() {
             @Override
@@ -19,5 +27,19 @@ public interface IData {
             }
         };
     }
+
+    /**
+     * Get type of data
+     *
+     * @return Type of data
+     */
+    Class<?> getType();
+
+    /**
+     * Get data object
+     *
+     * @return the data object
+     */
+    Object getData();
 
 }

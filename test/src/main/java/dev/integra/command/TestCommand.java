@@ -4,6 +4,7 @@ import dev.integra.api.command.CommandInfo;
 import dev.integra.api.command.CommandResult;
 import org.bukkit.command.CommandSender;
 
+import java.util.Arrays;
 import java.util.Map;
 
 public class TestCommand extends IntegraCommand {
@@ -13,7 +14,7 @@ public class TestCommand extends IntegraCommand {
     }
 
     @Override
-    protected String getMessage(CommandResult result) {
+    protected String getMessage(CommandResult result, IntegraCommandExecutor executor, String[] args) {
         switch (result) {
             case SUCCESS:
                 return "Success!";
@@ -23,6 +24,14 @@ public class TestCommand extends IntegraCommand {
                 return "Invalid sender!";
             case ERROR:
                 return "Error!";
+            case MISSING_ARGUMENTS:
+                if (executor.getCommand().argumentInfo().length > 0) {
+                    String[] argumentInfo = executor.getCommand().argumentInfo();
+                    String[] argsThatMissing = Arrays.copyOfRange(argumentInfo, args.length - 1, argumentInfo.length);
+                    argsThatMissing = Arrays.stream(argsThatMissing).filter(arg -> arg.startsWith("!")).map(arg -> arg.substring(1)).toArray(String[]::new);
+                    return "Missing arguments: " + String.join(", ", argsThatMissing);
+                }
+                return "Missing arguments!";
             case NOT_FOUND:
             default:
                 return "Not found!";
@@ -43,7 +52,7 @@ public class TestCommand extends IntegraCommand {
             description = "Test command",
             usage = "/test subcmd",
             argumentInfo = {
-                    "arg1", "arg2", "arg3"
+                    "!arg1", "!arg2", "arg3"
             },
             playerOnly = true
     )

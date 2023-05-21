@@ -5,6 +5,12 @@ import dev.integra.api.data.serialization.IQuerySerializer;
 
 import java.util.ArrayList;
 
+/**
+ * This class is used to register serializers for queries.
+ *
+ * @author milizm
+ * @since 1.0.0
+ */
 public class QueryRegistration {
 
     private static final ArrayList<IQuerySerializer> serializers = new ArrayList<>();

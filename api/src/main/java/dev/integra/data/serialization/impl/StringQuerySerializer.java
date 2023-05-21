@@ -4,6 +4,12 @@ import dev.integra.api.data.IQuery;
 import dev.integra.api.data.serialization.IQuerySerializer;
 import dev.integra.data.impl.StringQuery;
 
+/**
+ * Built-in serializer for {@link StringQuery}
+ *
+ * @author milizm
+ * @since 1.0.0
+ */
 public class StringQuerySerializer implements IQuerySerializer {
     @Override
     public String serialize(IQuery object) {

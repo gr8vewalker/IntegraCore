@@ -4,6 +4,12 @@ import dev.integra.api.data.IData;
 
 import java.util.Map;
 
+/**
+ * Built-in implementation of {@link IData} for {@link Map}
+ *
+ * @author milizm
+ * @since 1.0.0
+ */
 public class MapData implements IData {
 
     private final Map<?, ?> data;

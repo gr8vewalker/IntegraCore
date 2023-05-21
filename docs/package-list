@@ -1,0 +1,12 @@
+dev.integra
+dev.integra.api
+dev.integra.api.command
+dev.integra.api.data
+dev.integra.api.data.serialization
+dev.integra.command
+dev.integra.data
+dev.integra.data.file
+dev.integra.data.impl
+dev.integra.data.serialization
+dev.integra.data.serialization.impl
+dev.integra.utils

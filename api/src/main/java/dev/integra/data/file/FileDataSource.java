@@ -14,6 +14,13 @@ import java.io.File;
 import java.nio.file.Files;
 import java.util.Map;
 
+/**
+ * Data source implementation for file with json or yaml format
+ *
+ * @param <K> Key type
+ * @author milizm
+ * @since 1.0.0
+ */
 public class FileDataSource<K> extends BasicDataSource<K> {
 
     private final File file;
@@ -33,12 +40,22 @@ public class FileDataSource<K> extends BasicDataSource<K> {
         return type;
     }
 
+    /**
+     * Main method for saving data. Uses {@link #saveJson()} or {@link #saveYaml()} depends on {@link #type}
+     *
+     * @return true if success
+     */
     @Override
     public boolean load() {
         if (!file.exists()) save();
         return this.type == FileType.JSON ? loadJson() : loadYaml();
     }
 
+    /**
+     * Loads data from json file
+     *
+     * @return true if success
+     */
     private boolean loadJson() {
         try {
             JsonObject object = new JsonParser().parse(Files.newBufferedReader(file.toPath())).getAsJsonObject();
@@ -55,6 +72,11 @@ public class FileDataSource<K> extends BasicDataSource<K> {
         }
     }
 
+    /**
+     * Loads data from yaml file
+     *
+     * @return true if success
+     */
     private boolean loadYaml() {
         try {
             YamlConfiguration configuration = YamlConfiguration.loadConfiguration(file);
@@ -71,6 +93,11 @@ public class FileDataSource<K> extends BasicDataSource<K> {
         }
     }
 
+    /**
+     * Main save method. Uses {@link #saveJson()} or {@link #saveYaml()} depends on {@link #type}
+     *
+     * @return true if success
+     */
     @Override
     public boolean save() {
         if (!file.exists()) {
@@ -87,6 +114,11 @@ public class FileDataSource<K> extends BasicDataSource<K> {
         return this.type == FileType.JSON ? saveJson() : saveYaml();
     }
 
+    /**
+     * Saves data to json file
+     *
+     * @return true if success
+     */
     private boolean saveJson() {
         try {
             JsonObject object = new JsonObject();
@@ -104,6 +136,11 @@ public class FileDataSource<K> extends BasicDataSource<K> {
         }
     }
 
+    /**
+     * Saves data to yaml file
+     *
+     * @return true if success
+     */
     private boolean saveYaml() {
         try {
             YamlConfiguration configuration = new YamlConfiguration();
@@ -120,6 +157,9 @@ public class FileDataSource<K> extends BasicDataSource<K> {
         }
     }
 
+    /**
+     * File type for loading and saving
+     */
     public enum FileType {
         JSON,
         YAML

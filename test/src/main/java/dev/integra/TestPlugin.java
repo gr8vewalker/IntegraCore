@@ -26,6 +26,10 @@ public class TestPlugin extends IntegraPlugin {
     private final File testFile = new File(getDataFolder(), "testyml.yml");
     private final FileDataSource<String> dataSource = new FileDataSource<>(testFile, FileDataSource.FileType.YAML, String.class);
 
+    public static TestPlugin getInstance() {
+        return instance;
+    }
+
     @Override
     @NotNull
     public List<IDataSource> registerDataSources() {
@@ -56,14 +60,10 @@ public class TestPlugin extends IntegraPlugin {
 
     @Override
     protected void disable() {
-        Optional<IData> queryedData = dataSource.query(new StringQuery("test"));
-        queryedData.ifPresent(data -> getLogger().info("Data Retrieved: " + data.getData()));
+        Optional<IData> queriedData = dataSource.query(new StringQuery("test"));
+        queriedData.ifPresent(data -> getLogger().info("Data Retrieved: " + data.getData()));
 
-        Optional<IData> queryedMapData = dataSource.query(new StringQuery("testMap"));
-        queryedMapData.ifPresent(data -> getLogger().info("Map Data Retrieved: " + data.getData()));
-    }
-
-    public static TestPlugin getInstance() {
-        return instance;
+        Optional<IData> queriedMapData = dataSource.query(new StringQuery("testMap"));
+        queriedMapData.ifPresent(data -> getLogger().info("Map Data Retrieved: " + data.getData()));
     }
 }

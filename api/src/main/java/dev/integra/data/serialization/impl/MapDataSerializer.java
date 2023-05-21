@@ -10,6 +10,20 @@ import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Built-in serializer for {@link MapData}.<br><br>
+ * <p>
+ * Serializes data into a string with the following format:
+ * <code>java.util.Map^base64encoded</code><br><br>
+ * By adding type information to the beginning of the string, we avoid conflicts with the String deserializer.
+ * </p>
+ *
+ * @author milizm
+ * @see ObjectOutputStream serialization of Map
+ * @see ObjectInputStream deserialization of Map
+ * @see Base64 encoding and decoding for writability
+ * @since 1.0.0
+ */
 public class MapDataSerializer implements IDataSerializer {
     @Override
     public Object serialize(IData object) {
