@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>dev.integra</groupId>
-    <artifactId>Core</artifactId>
+    <artifactId>core</artifactId>
     <version>dev-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
@@ -18,5 +18,13 @@
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/milizm/IntegraCore</url>
+        </repository>
+    </distributionManagement>
 
 </project>
