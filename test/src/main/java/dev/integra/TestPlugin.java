@@ -65,5 +65,8 @@ public class TestPlugin extends IntegraPlugin {
 
         Optional<IData> queriedMapData = dataSource.query(new StringQuery("testMap"));
         queriedMapData.ifPresent(data -> getLogger().info("Map Data Retrieved: " + data.getData()));
+
+        Optional<IntData> quiriedIntData = dataSource.queryTyped(new StringQuery("test"));
+        quiriedIntData.ifPresent(data -> getLogger().info("Int Data Retrieved: " + data.getData()));
     }
 }

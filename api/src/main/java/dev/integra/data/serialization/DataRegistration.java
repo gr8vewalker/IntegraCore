@@ -28,12 +28,7 @@ public class DataRegistration {
     }
 
     public static IDataSerializer getSerializer(Class<?> type) {
-        for (IDataSerializer serializer : serializers) {
-            if (serializer.getType().isAssignableFrom(type)) {
-                return serializer;
-            }
-        }
-        return null;
+        return serializers.stream().filter(c -> c.getType() == type).findFirst().orElse(serializers.stream().filter(c -> c.getType().isAssignableFrom(type)).findFirst().orElse(null));
     }
 
 }

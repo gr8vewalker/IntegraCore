@@ -34,6 +34,16 @@ public interface IDataSource {
     Optional<IData> query(IQuery query);
 
     /**
+     * Query data from source
+     *
+     * @since 1.0.2
+     * @param query {@link IQuery} object
+     * @return Optional of {@link IData} includes data if found
+     * @param <T> Type of {@link IData}
+     */
+    <T extends IData> Optional<T> queryTyped(IQuery query);
+
+    /**
      * Insert or update data to source
      *
      * @param query {@link IQuery} object

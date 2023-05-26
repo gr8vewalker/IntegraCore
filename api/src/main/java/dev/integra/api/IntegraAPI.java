@@ -25,8 +25,11 @@ import java.util.logging.Logger;
 public class IntegraAPI {
 
     private static final Logger LOGGER = Logger.getLogger("IntegraAPI");
+    private static boolean initialized = false;
 
     public static void initialize() {
+        if (initialized) return; // Don't initialize twice if there is 1+ plugin using IntegraAPI
+        initialized = true;
         LOGGER.info("IntegraAPI: Initializing");
         initializeData();
         LOGGER.info("IntegraAPI: Initialization Successful");

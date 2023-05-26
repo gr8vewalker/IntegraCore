@@ -29,12 +29,27 @@ public abstract class BasicDataSource<K> implements IDataSource {
      * Getting data from key-value map
      *
      * @param query Key for finding data
-     * @return Optional of IData includes data if found
+     * @return Optional of {@link IData} includes data if found
      */
     @Override
     public Optional<IData> query(IQuery query) {
         if (query.getType() == getKeyClass()) {
             return Optional.ofNullable(keyValueMap.get(query.getQuery()));
+        }
+        return Optional.empty();
+    }
+
+    /**
+     * Getting data from key-value map
+     *
+     * @param query {@link IQuery} object
+     * @return Optional of {@link IData} includes data if found
+     * @param <T> Type of {@link IData}
+     */
+    @Override
+    public <T extends IData> Optional<T> queryTyped(IQuery query) {
+        if (query.getType() == getKeyClass()) {
+            return Optional.ofNullable((T) keyValueMap.get(query.getQuery()));
         }
         return Optional.empty();
     }

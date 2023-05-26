@@ -28,12 +28,7 @@ public class QueryRegistration {
     }
 
     public static IQuerySerializer getSerializer(Class<?> type) {
-        for (IQuerySerializer serializer : serializers) {
-            if (serializer.getType().isAssignableFrom(type)) {
-                return serializer;
-            }
-        }
-        return null;
+        return serializers.stream().filter(c -> c.getType() == type).findFirst().orElse(serializers.stream().filter(c -> c.getType().isAssignableFrom(type)).findFirst().orElse(null));
     }
 
 }
